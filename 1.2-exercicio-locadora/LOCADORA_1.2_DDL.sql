@@ -1,0 +1,45 @@
+
+CREATE DATABASE Empresa;
+
+USE Empresa;
+
+CREATE TABLE Empresa
+(
+	idEmpresa	INT PRIMARY KEY IDENTITY,
+	Nome		VARCHAR(200) NOT NULL,
+	Endereco	VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE Pessoa
+(
+	idPessoa	INT PRIMARY KEY IDENTITY,
+	Nome		VARCHAR(200) NOT NULL,
+	Endereco	VARCHAR(200) NOT NULL,
+	CPF			TINYINT NOT NULL
+);
+
+CREATE TABLE Aluguel
+(
+	idAluguel	INT PRIMARY KEY IDENTITY,
+	idPessoa	INT FOREIGN	KEY	REFERENCES Pessoa (idPessoa),
+	Dia			TINYINT NOT NULL,
+	Preco		TINYINT NOT NULL
+);
+
+CREATE TABLE Veiculos
+(
+	idVeiculos	INT PRIMARY KEY IDENTITY,
+	idAluguel	INT FOREIGN	KEY	REFERENCES Aluguel (idAluguel),
+	Placa		VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE Modelo
+(
+	idModelo	INT PRIMARY KEY IDENTITY,
+	idVeiculos	INT	FOREIGN	KEY	REFERENCES	Veiculos (idVeiculos),
+	Nome		VARCHAR(200) NOT NULL,
+	Ano			TINYINT	NOT NULL
+);
+
+
+	
